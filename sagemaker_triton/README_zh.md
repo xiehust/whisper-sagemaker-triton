@@ -1,5 +1,7 @@
 # Whisper ASR SageMaker Triton 部署
 
+（fork https://github.com/xqun3/whisper-sagemaker-triton.git）做了少许改动，增加batch，采样等处理
+
 本项目演示了如何使用 NVIDIA Triton 推理服务器在 Amazon SageMaker 上部署 Whisper 自动语音识别（ASR）模型。它提供了一种可扩展且高效的方法，使用 Whisper large-v3 模型进行语音到文本的转录。
 
 ## 概述
@@ -26,14 +28,13 @@
 2. 配置部署参数：
    编辑 `config.sh` 文件，设置以下参数：
    - `PROJECT_ROOT`：项目根目录路径
-   - `DOCKER_IMAGE`：Docker 镜像名称
-   - `CONDA_ENV`：Conda 环境名称
-   - `USE_LORA`：是否使用 LoRA 模型（true/false）
-   - `HUGGING_FACE_MODEL_ID`：Hugging Face 模型 ID
-   - `LORA_PATH`：LoRA 模型路径（如果使用）
    - `OUTPUT_MODEL_PATH`：输出模型路径
    - `OPENAI_WHISPER_DOWNLOAD_URL`：OpenAI Whisper 模型下载 URL
-   - `S3_PATH`：S3 存储路径
+   - `S3_PATH`：S3 存储路径  经过脚本编译后的模型的存放s3地址 注意 s3 路径最后加上 /
+   - `USE_LORA`：是否使用 LoRA 模型（true/false）
+   - `HUGGING_FACE_MODEL_ID`：如果启用Lora则需要填写Hugging Face 模型 ID
+   - `LORA_PATH`：LoRA 模型路径（如果使用）
+
 
 3. 运行准备和部署脚本：
    ```
